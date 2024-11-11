@@ -1,0 +1,29 @@
+视频音频分离下载最高质量
+.\yt-dlp.exe -f bestvideo*+bestaudio/best "替换"
+
+
+.\yt-dlp.exe -f bestvideo+bestaudio/best "替换"
+
+视频音频合并下载（有效）
+.\yt-dlp.exe -f bestvideo*+bestaudio --merge-output-format mp4 "替换"
+.\yt-dlp.exe -f bestvideo*+bestaudio --merge-output-format mp4 "替换"
+
+
+查看都有什么格式
+yt-dlp -F "替换"
+
+最佳质量
+yt-dlp -f "bestvideo[height>=2160]+bestaudio" --merge-output-format mp4 "替换"
+
+
+自动化，双击后输入link 回车
+@echo off
+set /p url="Enter/Paste link: "
+powershell -Command "& { .\yt-dlp.exe -f bestvideo+bestaudio --merge-output-format mp4 '%url%' }"
+pause
+
+自动化方案2，直接获取剪贴板text内容
+@echo off
+for /f "tokens=* usebackq" %%A in (`powershell -command "Add-Type -AssemblyName PresentationCore; [System.Windows.Clipboard]::GetText()"`) do set url=%%A
+powershell -Command "& { .\yt-dlp.exe -f bestvideo*+bestaudio --merge-output-format mp4 '%url%' }"
+pause
